@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "159214570801",
+    "project_id": "mynote-itechsoftwares",
+    "storage_bucket": "mynote-itechsoftwares.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159214570801:android:9ba5e55f427702f7e83410",
+        "android_client_info": {
+          "package_name": "tech.itechsoftwares.mynotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhhOvb86yYt1t9bzRDskHYFdX23LINHYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
