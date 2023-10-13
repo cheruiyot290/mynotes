@@ -1,8 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mynotes/firebase_options.dart';
+import 'package:mynotes/pages/login.dart';
+import 'package:mynotes/pages/notes_view.dart';
+import 'package:mynotes/pages/verify_email.dart';
+import 'package:mynotes/services/auth/auth_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,32 +16,29 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-        centerTitle: true,
-      ),
-      body: FutureBuilder(
-        future: Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        ),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState){
-            case ConnectionState.done:
-              final user = FirebaseAuth.instance.currentUser;
-              if(user?.emailVerified ?? false){
-                print('You are a verified user');
+    return FutureBuilder(
+      future: AuthService.firebase().initialize(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState){
+          case ConnectionState.done:
+            final user = AuthService.firebase().currentUser;
+            if(user != null){
+              if(user.isEmailVerified){
+                return const NotesView();
               }else{
-                print('You need to be verified first!');
+                return const VerifyEmail();
               }
-              // TODO: Handle this case.
-              return const Text('Done...');
+            }else{
+              return const LoginPage();
+            }
+            return const Text('Done...');
+        // TODO: Handle this case.
+          default:
+            return const CircularProgressIndicator(
 
-            default:
-              return const Text('Loading...');
-          }
-        },
-      ),
+            );
+        }
+      },
     );
   }
 }
