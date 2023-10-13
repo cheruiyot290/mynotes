@@ -24,7 +24,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
-    // TODO: implement initState
     super.initState();
   }
 
@@ -32,7 +31,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
   void dispose() {
     _email.dispose();
     _password.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
